@@ -130,10 +130,10 @@
 		$mail->Host = 'smtp.gmail.com';
 		$mail->Port = '587';
 		
-		$mail->Username = 'email';
-		$mail->Password = 'contrasena';
+		$mail->Username = '';
+		$mail->Password = '';
 		
-		$mail->setFrom('email', 'nombre');
+		$mail->setFrom('', '');
 		$mail->addAddress($email, $nombre);
 		
 		$mail->Subject = $asunto;
