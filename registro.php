@@ -17,7 +17,7 @@ $captcha = $mysqli->real_escape_string($_POST['g-recaptcha-response']);
 	
 	$activo= 0;
 	$tipo_usuario = 2;
-	$secret = '6Lc44IwUAAAAAKrHWjSkBsdgBB1CmO9kDuDqJByH';
+	$secret = '';
 	
 	if(!$captcha){
 		$errors[] = "Por favor verifica el captcha";
@@ -56,13 +56,13 @@ $captcha = $mysqli->real_escape_string($_POST['g-recaptcha-response']);
 		$registro = registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario);
 		if($registro > 0)
 		{
-			$url = 'http://'.$_SERVER["SERVER_NAME"].'/login/activar.php?id='.$registro.'&val='.$token;
+			$url = 'http://'.$_SERVER["SERVER_NAME"].'/activar.php?id='.$registro.'&val='.$token;
 			
-			$asunto = 'Verificacion de cuenta-Despistaos';
+			$asunto = 'Verificacion de cuenta';
 			$cuerpo = "Hola $nombre: <br><br><br>Para continuar con tu registro, Ve al siguiente link para confirmar que esta cuenta es tuya <a href='$url'>Activar Cuenta</a>";
 			if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
 				echo "Para terminar su proceso de registro le hemos enviado a su correo electronico: $email un enlace para continuar con su registro";
-				echo "<br><a href='index.php'>Iniciar sesion</a>";
+				echo "<br><a href='login.php'>Iniciar sesion</a>";
 				exit;
 			}else{
 				$errors[] = "Error al enviar email";
@@ -92,7 +92,7 @@ $captcha = $mysqli->real_escape_string($_POST['g-recaptcha-response']);
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">Reg&iacute;strate</div>
-						<div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="index.php">Iniciar Sesi&oacute;n</a></div>
+						<div style="float:right; font-size: 85%; position: relative; top:-10px;"><a id="signinlink" href="index.php">Iniciar Sesi&oacute;n</a></div>
 					</div>  
 					
 					<div class="panel-body" >
@@ -105,9 +105,9 @@ $captcha = $mysqli->real_escape_string($_POST['g-recaptcha-response']);
 							</div>
 							
 							<div class="form-group">
-								<label for="nombre" class="col-md-3 control-label">Nombre:</label>
+								<label for="nombre" class="col-md-3 control-label">Nombre</label>
 								<div class="col-md-9">
-									<input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if(isset($nombre)) echo $nombre; ?>" required >
+									<input type="text" class="form-control" name="nombre" placeholder="Nombre IC" value="<?php if(isset($nombre)) echo $nombre; ?>" required >
 								</div>
 							</div>
 							
@@ -146,7 +146,7 @@ $captcha = $mysqli->real_escape_string($_POST['g-recaptcha-response']);
 							
 							<div class="form-group">                                      
 								<div class="col-md-offset-3 col-md-9">
-									<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button> 
+									<button id="btn-signup" type="submit" class="btn btn-primary"><i class="icon-hand-right"></i>Registrar</button>
 								</div>
 							</div>
 						</form>
