@@ -24,7 +24,7 @@ if(isset($_GET["id"]) AND isset($_GET['val'])){
 			<h1><?php echo $mensaje ?></h1>
 			<br>
 			<br>
-			<p><a class="btn btn-primary btn-lg" href="index.php" role="button">Iniciar sesi&oacute;n</a></p>
+			<p><a class="btn btn-primary btn-lg" href="login.php" role="button">Iniciar sesi&oacute;n</a></p>
 			</div>
 		</div>
 	</body>
