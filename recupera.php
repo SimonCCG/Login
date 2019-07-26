@@ -24,13 +24,13 @@ $email = $mysqli->real_escape_string($_POST['email']);
 			
 			$url = 'http://'.$_SERVER["SERVER_NAME"].'/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
 			
-			$asunto = 'Recuperar contraseña - Despistaos RP';
+			$asunto = 'Recuperar contraseña';
 			$cuerpo = "Hola $nombre <br /><br />Se ha solicitado un cambio de contraseña. <br /><br /> Si desea reiniciarla, visita la siguinte direcci&oacute;n: <a href='$url'>Cambiar password</a>";
 			
 			if(enviarEmail($email, $nombre, $asunto, $cuerpo))
 			{
 				echo "Hemos enviado un correo electronico a la direccion $email para restablecer tu contraseña.<br />";
-				echo"<a href='inde.php'> Iniciar session</a>";
+				echo"<a href='index.php'> Iniciar session</a>";
 				exit;
 			}else{
 				$errors[] = "Eror al enviar el email";
