@@ -130,10 +130,10 @@
 		$mail->Host = 'smtp.gmail.com';
 		$mail->Port = '587';
 		
-		$mail->Username = '';
-		$mail->Password = '';
+		$mail->Username = 'email';
+		$mail->Password = 'contrasena';
 		
-		$mail->setFrom('', '');
+		$mail->setFrom('email', 'nombre');
 		$mail->addAddress($email, $nombre);
 		
 		$mail->Subject = $asunto;
@@ -220,8 +220,11 @@
 					lastSession($id);
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;
+					$_SESSION['nombre'] = $nombre;
+					$_SESSION['usuario'] = $usuario;
+					$_SESSION['correo'] = $email;
 					
-					header("location: welcome.php");
+					header("location: main/index.php");
 					} else {
 					
 					$errors = "La contrase&ntilde;a es incorrecta";
@@ -230,7 +233,7 @@
 				$errors = 'El usuario no esta activo';
 			}
 			} else {
-			$errors = "El nombre de usuario o correo electr&oacute;nico no existe";
+			$errors = "El nombre de usuario no existe";
 		}
 		return $errors;
 	}
